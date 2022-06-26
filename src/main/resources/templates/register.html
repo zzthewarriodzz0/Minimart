@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="LoginRegisterForm/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="LoginRegisterForm/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            
+            <div class="booking-content">
+                
+                <div class="booking-image booking-img" alt="Booking Image" style="background-image: url(https://source.unsplash.com/1600x900/?coffee); height: 725px;"></div>
+                <div class="booking-form">
+                    <form id="register-form" class="needs-validation" novalidate action="#" th:object="${account}" method="post">
+                        <a class="navbar-brand" href="/home"> <img
+					src="images/logo-shadow.jpg" alt="Logo" class="tm-site-logo" />
+						</a>
+                        <h1>Register</h1>
+                        <div class="form-group form-input">
+                            <input type="text" class="form-control" th:field="*{username}" id="name" value="" required/>
+                            <label for="name" class="form-label">Username</label>
+                            <div class="error" style="color: red; background: #10141a"></div>
+                            <div style="color: red; background: #10141a" id="namefail"></div>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="password" class="form-control" th:field="*{password}" id="password" value="" required />
+                            <label for="password" class="form-label">Password</label>
+                            <div class="error" style="color: red; background: #10141a"></div>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="password" class="form-control" id="repassword" value="" required />
+                            <label for="repassword" class="form-label">Confirm Password</label>
+                            <div class="error" style="color: red; background: #10141a"></div>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="text" class="form-control" th:field="*{email}" id="mail" value="" required />
+                            <label for="mail" class="form-label">Email</label>
+                            <div class="error" style="color: red; background: #10141a"></div>
+                            <div style="color: red; background: #10141a" id="emailfail"></div>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="text" class="form-control" th:field="*{fullname}" id="fullname" value="" required />
+                            <label for="fullname" class="form-label">Full Name</label>
+                            <div class="error" style="color: red; background: #10141a"></div>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="text" class="form-control" th:field="*{phone}" id="phone" value="" required />
+                            <label for="phone" class="form-label">Phone</label>
+                            <div class="error" style="color: red; background: #10141a"></div>
+                            <div style="color: red; background: #10141a" id="phonefail"></div>
+                        </div>
+                        <div>
+                            <div><span>Gender</span></div>
+                            <select class="form-select" id="gender" th:field="*{gender}">
+                                <option th:value="Male">Male</option>
+                                <option th:value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="text" class="form-control" th:field="*{address}" id="address" value="" required />
+                            <label for="address" class="form-label">Address</label>
+                        </div>                        
+                        <div class="form-submit">
+                            <input th:onclick="addAccount()" value="Register" class="submit" id="submit" name="submit" />
+                            <a id="linkregister" href="/login">Login Here!</a>
+                        </div>
+                    </form>                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="LoginRegisterForm/vendor/jquery/jquery.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="LoginRegisterForm/js/main.js"></script>
+    <script th:src="@{/js/form_validate.js}"></script>
+    <script th:src="@{/js/register_form.js}"></script>
+    <script>
+        Validator({
+           form: '#register-form',
+            errorSelector: '.error',
+            rules: [
+                Validator.isRequired('#name'),
+                Validator.isRequired('#mail'),
+                Validator.isEmail('#mail'),
+                Validator.isRequired('#password'),
+                Validator.minLength('#password', 8),
+                Validator.isRequired('#repassword'),
+                Validator.isConfirmed('#repassword', function () {return document.querySelector('#register-form #password').value;}),
+                Validator.isRequired('#fullname'),
+                Validator.isRequired('#phone'),
+                Validator.isPhone('#phone'),
+            ]
+        });
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

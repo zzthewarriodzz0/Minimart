@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+	<!-- Site Icons -->
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
+		  type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+	<!-- Site CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/custom.css">
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>Product Manager</title>
+</head>
+<body>
+<header class="top-navbar">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="/home"> <img
+					src="/images/logo1.png" alt="Logo" class="tm-site-logo" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbars-rs-food">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown-a"
+						   data-toggle="dropdown">Home</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							<a class="dropdown-item" href="/home">Home site</a>
+							<a class="dropdown-item" href="/admin">Admin Home</a>
+						</div>
+					</li>
+					<div class="dropdown ">
+						<button class="btn login_btn" type="button"
+								data-toggle="dropdown">
+							<i class="fas fa-user-tie"></i>Welcome, boss<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="/profile"><i class="fas fa-user"></i>
+								Profile</a></li>
+							<li class="dropdown-divider"></li>
+							<li><a href="/login"><i class="fas fa-sign-out-alt"></i>
+								Logout</a></li>
+						</ul>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+<div align="center">	
+
+		
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+	
+	<h1>Product Manager</h1>
+	<a href="/newProduct">Create New Product</a>
+	
+	<br/><br/>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Product ID</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Description</th>
+				<th>Quantity</th>
+				<th>Category</th>
+				
+				<th>Actions</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${listProduct}">
+				<td th:text="${product.id}">Product ID</td>
+				<td th:text="${product.productName}">Name</td>
+				<td th:text="${product.price}">Price</td>
+				<td th:text="${product.description}">Description</td>
+				<td th:text="${product.quantity}">Quantity</td>
+				<td th:text="${product.category.type}">Category</td>
+				<td>
+					<a th:href="@{'/editProduct/' + ${product.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/deleteProduct/' + ${product.id}}">Delete</a>
+
+					<a th:onclick="addToCart([[${product.id}]])"
+					   class="btn btn-primary btn-block waves-effect waves-light">Add to Cart</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script th:src="@{/js/cart_control.js}"></script>
+
+</body>
+</html>

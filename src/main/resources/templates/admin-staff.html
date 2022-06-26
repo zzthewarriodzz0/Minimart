@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+	integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+	integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+	crossorigin="anonymous"></script>
+<link href="ManageForm/style.css">
+<title>Manage</title>
+</head>
+
+<body>
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="/home"> <img
+					src="/images/logo1.png" alt="Logo" class="tm-site-logo" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
+							data-toggle="dropdown">Home</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="/home">Home site</a> <a
+									class="dropdown-item" href="/admin">Admin Home</a>
+							</div></li>
+						<div class="dropdown ">
+							<button class="btn login_btn" type="button"
+								data-toggle="dropdown">
+								<i class="fas fa-user-tie"></i>Welcome, boss<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li><a href="/profile"><i class="fas fa-user"></i>
+										Profile</a></li>
+								<li class="dropdown-divider"></li>
+								<li><a href="/login"><i class="fas fa-sign-out-alt"></i>
+										Logout</a></li>
+							</ul>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<div class="main-body">
+			<div class="row gutters-sm">
+				<div class="col-md-8">
+					<div class="card mb-3">
+						<div class="card-body">
+							<form action="" th:action="@{/saveNewStaff}" th:object="${account}" method="POST">
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Username</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputUsername"
+											placeholder="Enter Username" th:field="*{username}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputPassword"
+											placeholder="Enter Password" th:field="*{password}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">FullName</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputFullname"
+											placeholder="Enter FullName" th:field="*{fullname}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Gender</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputGender"
+											placeholder="Enter Gender" th:field="*{gender}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputAddress"
+											placeholder="Enter Email" th:field="*{email}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Address</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputAddress"
+											placeholder="Enter Address" th:field="*{address}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Phone
+										number</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputTel"
+											placeholder="Enter Phone number" th:field="*{phone}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-2 col-form-label">Salary</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="inputSalary"
+											placeholder="Enter Salary" th:field="*{salary}">
+									</div>
+								</div>
+								<button type="submit" class="btn btn-outline-secondary mt-2">Add
+									Staff</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="container">
+					<div class="main-body">
+						<div class="row gutters-sm">
+							<div class="col-md-9">
+								<div class="card mb-3">
+									<div class="card-header">
+										<div class="d-flex flex-column align-items-center text-center">
+											<form class="d-flex">
+												<input class="form-control me-2" type="search"
+													placeholder="Search" aria-label="Search">
+												<button type="button" class="btn btn-outline-secondary">Search</button>
+											</form>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="mb-3 row">
+
+											<table class="table">
+												<thead>
+													<tr>
+														<th scope="col">ID</th>
+														<th scope="col">Username</th>
+														<th scope="col">Fullname</th>
+														<th scope="col">Gender</th>
+														<th scope="col">Email</th>
+														<th scope="col">Address</th>
+														<th scope="col">Tel</th>
+														<th scope="col">Salary</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="account : ${listStaff}">
+														<td th:text="${account.id}">Action</th>
+														<td th:text="${account.username}"></td>
+														<td th:text="${account.fullname}"></td>
+														<td th:text="${account.gender}"></td>
+														<td th:text="${account.email}"></td>
+														<td th:text="${account.address}"></td>
+														<td th:text="${account.phone}"></td>
+														<td th:text="${account.salary}"></td>
+														<td> <a th:href="@{'admin/deleteStaff/' + ${account.id}}">Delete</a></td>
+													</tr>
+												</tbody>
+											</table>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

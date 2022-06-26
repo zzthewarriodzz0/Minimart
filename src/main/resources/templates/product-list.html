@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="/css/bootstrap.min.css">
+    <link href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <link href="fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">
+    <script defer src="fontawesome-free-5.15.3-web/js/all.js"></script>
+    <link href="fontawesome-free-5.15.3-web/css/fontawesome.css" rel="stylesheet">
+    <link href="fontawesome-free-5.15.3-web/css/brands.css" rel="stylesheet">
+    <link href="fontawesome-free-5.15.3-web/css/solid.css" rel="stylesheet">
+    <script defer src="fontawesome-free-5.15.3-web/js/brands.js"></script>
+    <script defer src="fontawesome-free-5.15.3-web/js/solid.js"></script>
+    <script defer src="fontawesome-free-5.15.3-web/js/fontawesome.js"></script>
+    <title>Product</title>
+</head>
+
+<body>
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="/home"> <img
+					src="/images/logo1.png" alt="Logo" class="tm-site-logo" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a"
+								data-toggle="dropdown">Home</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="/home">Home site</a>
+								<a class="dropdown-item" href="/admin">Admin Home</a>
+							</div>
+						</li>
+						<div class="dropdown ">
+							<button class="btn login_btn" type="button"
+								data-toggle="dropdown">
+								<i class="fas fa-user-tie"></i>Welcome, boss<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="/profile"><i class="fas fa-user"></i>
+										Profile</a></li>
+							<li class="dropdown-divider"></li>
+								<li><a href="/login"><i class="fas fa-sign-out-alt"></i>
+										Logout</a></li>
+							</ul>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container-fluid" style="margin-top: 4rem;">
+        <div class="card mt-4">
+            <div class="card-header text-center">
+                <h1>Edit Product</h1>
+            </div>
+            <form class="row g-3 ml-2" action="#" th:action="@{/save}" th:object="${product}" method="post">
+                <div class="col-12">
+                    <label class="form-label">Product Name</label>
+                    <input type="text"  th:field="*{productName}" class="form-control" placeholder="Ex: Tra Sua">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Price</label>
+                    <input type="text" th:field="*{price}" class="form-control" placeholder="Ex: 15.000VND">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Quantity</label>
+                    <input type="text" th:field="*{quantity}" class="form-control" placeholder="EX: 1,2,3,...">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Image</label>
+                    <input type="text" th:field="*{image}" class="form-control" placeholder="Link Image..">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" th:field="*{category}">
+                        <option value="1">Milk</option>
+                        <option value="2">Food</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Supplier</label>
+                    <select class="form-select" th:field="*{supplier}">
+                        <option value="1">BTS</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <input type="text" th:field="*{description}" class="form-control" placeholder="About product">
+                </div>
+
+                <div class="col-12 mb-3">
+                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                    <a type="submit" href="/admin/home" class="btn btn-outline-danger">Back</a>
+                </div>
+            </form>
+        </div>
+    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                            <tr th:each="product:${listProducts}">
+                            	<th scope="col" th:text="${product.id}"></th>
+                                <th scope="col" th:text="${product.productName}"></th>
+                                <th scope="col" ><img style="height: 150px; width:120px" th:attr="src=@{${product.image}}"></th>
+                                <th scope="col" th:text="${product.description}"></th>
+                                <th scope="col" th:text="${product.quantity}"></th>
+                                <th scope="col" th:text="${product.price}"></th>
+                                <th scope="col" th:text="${product.category.type}"></th>
+								<td><a th:href="@{'/editProduct/' + ${product.id}}">Edit</a>
+									&nbsp;&nbsp;&nbsp;&nbsp; <a
+									th:href="@{'/deleteProduct/' + ${product.id}}">Delete</a></td>
+							</tr>
+                            
+                        </tbody>
+                    </table>
+       </div>
+
+    
+</body>
+
+</html>

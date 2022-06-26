@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Manager</title>
+</head>
+<body>
+<div align="center">	
+
+		
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+	
+	<h1>Product Manager</h1>
+	<a href="newDesk">Create New Desk</a>
+	
+	<br/><br/>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Desk ID</th>
+				<th>Seat</th>
+				<th>Status</th>
+				<th>Actions</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="desk : ${listDesk}">
+				<td th:text="${desk.id}">Product ID</td>
+				<td th:text="${desk.seat}">Name</td>
+				<td th:text="${desk.status}">Price</td>
+				<td>
+					<a th:href="@{'/editDesk/' + ${desk.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/deleteDesk/' + ${desk.id}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
